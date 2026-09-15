@@ -21,6 +21,16 @@
     "autoload": {
         "psr-4": {
             "Veldora\\Connect\\Stripe\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "veldora": {
+            "providers": [
+                "Veldora\\Connect\\Stripe\\StripeServiceProvider"
+            ]
         }
     },
     "autoload-dev": {

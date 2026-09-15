@@ -32,7 +32,7 @@ return [
     | Your Stripe secret API key. Keep this private — never expose it in
     | client-side code. Use test-mode keys (sk_test_...) during development.
     */
-    'secret_key' => env('STRIPE_SECRET_KEY', ''),
+    'secret_key' => env('STRIPE_SECRET_KEY', env('STRIPE_SECRET', '')),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     | Your Stripe publishable key for use in client-side JavaScript.
     | Safe to expose (pk_test_... or pk_live_...).
     */
-    'public_key' => env('STRIPE_PUBLIC_KEY', ''),
+    'public_key' => env('STRIPE_PUBLIC_KEY', env('STRIPE_KEY', '')),
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ return [
     |--------------------------------------------------------------------------
     | ISO 4217 three-letter currency code.
     */
-    'currency' => env('STRIPE_DEFAULT_CURRENCY', 'usd'),
+    'currency' => env('STRIPE_DEFAULT_CURRENCY', env('STRIPE_CURRENCY', 'usd')),
 
     /*
     |--------------------------------------------------------------------------

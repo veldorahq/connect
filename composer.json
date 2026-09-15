@@ -1,16 +1,45 @@
 {
     "name": "veldora/connect",
-    "description": "Official integration monorepo for the Veldora PHP Framework",
-    "type": "project",
+    "description": "Official integration ecosystem for the Veldora PHP Framework",
+    "type": "library",
     "license": "MIT",
+    "keywords": ["veldora", "connect", "integrations", "stripe", "payments"],
+    "authors": [
+        {
+            "name": "Shahriyar Fahim",
+            "role": "Developer"
+        }
+    ],
     "require": {
-        "php": "^8.2"
+        "php": "^8.2",
+        "veldora/framework": "^0.6.0|^0.7.0",
+        "stripe/stripe-php": "^13.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5|^11.0"
+    },
+    "replace": {
+        "veldora/connect-stripe": "self.version"
+    },
+    "autoload": {
+        "psr-4": {
+            "Veldora\\Connect\\Stripe\\": "packages/stripe/src/"
+        },
+        "files": [
+            "packages/stripe/src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Veldora\\Connect\\Stripe\\Tests\\": "packages/stripe/tests/"
+        }
     },
     "extra": {
-        "monorepo": true,
-        "packages": [
-            "packages/stripe"
-        ]
+        "veldora": {
+            "providers": [
+                "Veldora\\Connect\\Stripe\\StripeServiceProvider"
+            ]
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

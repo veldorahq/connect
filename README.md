@@ -23,11 +23,13 @@ Starting with **v0.7.0**, Veldora Connect officially introduces the **Stripe Pay
 
 ## Getting Started with Stripe
 
-Install the official Stripe integration package via Composer:
+Install the official Veldora Connect package via Composer:
 
 ```bash
-composer require veldora/connect-stripe
+composer require veldora/connect
 ```
+> Or install specifically: `composer require veldora/connect-stripe`
+
 
 ### 1. Publish Configuration & Environment
 

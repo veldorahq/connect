@@ -42,7 +42,7 @@ class StripeServiceProvider extends ServiceProvider
         // Register StripeClient as a singleton.
         $this->app->singleton(StripeClient::class, function () {
             /** @var Config $config */
-            $config = $this->app->make(Config::class);
+            $config = $this->app->get(Config::class);
 
             /** @var array<string, mixed> $stripeConfig */
             $stripeConfig = $config->get('stripe', []);
@@ -53,13 +53,13 @@ class StripeServiceProvider extends ServiceProvider
         // Register StripeManager as a singleton that receives the StripeClient.
         $this->app->singleton(StripeManager::class, function () {
             /** @var StripeClient $client */
-            $client = $this->app->make(StripeClient::class);
+            $client = $this->app->get(StripeClient::class);
             return new StripeManager($client);
         });
 
         // Register the 'stripe' string alias so app('stripe') works.
         $this->app->singleton('stripe', function () {
-            return $this->app->make(StripeManager::class);
+            return $this->app->get(StripeManager::class);
         });
     }
 
@@ -78,7 +78,7 @@ class StripeServiceProvider extends ServiceProvider
     private function mergeConfig(): void
     {
         /** @var Config $config */
-        $config = $this->app->make(Config::class);
+        $config = $this->app->get(Config::class);
 
         // Only load package defaults if no stripe config is present.
         if ($config->get('stripe') === null) {
