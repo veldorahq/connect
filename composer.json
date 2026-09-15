@@ -1,0 +1,17 @@
+{
+    "name": "veldora/connect",
+    "description": "Official integration monorepo for the Veldora PHP Framework",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2"
+    },
+    "extra": {
+        "monorepo": true,
+        "packages": [
+            "packages/stripe"
+        ]
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

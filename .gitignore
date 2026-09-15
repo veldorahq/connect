@@ -1,0 +1,14 @@
+vendor/
+packages/*/vendor/
+composer.lock
+packages/*/composer.lock
+.phpunit.result.cache
+packages/*/.phpunit.result.cache
+.env
+*.log
+
+# Packages to be released in future versions (v0.7.0 features Stripe only)
+packages/resend/
+packages/s3/
+packages/sentry/
+packages/sslcommerz/
