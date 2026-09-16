@@ -1,0 +1,39 @@
+name: Split Packages
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        package:
+          - local_path: stripe
+            repository: connect-stripe
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Split Stripe package
+        uses: danharrin/monorepo-split-github-action@v2.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.SPLIT_REPO_TOKEN }}
+        with:
+          package_directory: packages/${{ matrix.package.local_path }}
+          repository_organization: veldorahq
+          repository_name: ${{ matrix.package.repository }}
+          user_name: "Veldora Bot"
+          user_email: "bot@modrao.com"
