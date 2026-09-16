@@ -27,7 +27,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Split Stripe package
+      # Split normal commits to main
+      - name: Split package branch
+        if: "!startsWith(github.ref, 'refs/tags/')"
         uses: danharrin/monorepo-split-github-action@v2.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.SPLIT_REPO_TOKEN }}
@@ -35,5 +37,19 @@ jobs:
           package_directory: packages/${{ matrix.package.local_path }}
           repository_organization: veldorahq
           repository_name: ${{ matrix.package.repository }}
+          user_name: "Veldora Bot"
+          user_email: "bot@veldora.dev"
+
+      # Split release tags
+      - name: Split package tag
+        if: "startsWith(github.ref, 'refs/tags/')"
+        uses: danharrin/monorepo-split-github-action@v2.4.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.SPLIT_REPO_TOKEN }}
+        with:
+          package_directory: packages/${{ matrix.package.local_path }}
+          repository_organization: veldorahq
+          repository_name: ${{ matrix.package.repository }}
+          tag: ${{ github.ref_name }}
           user_name: "Veldora Bot"
           user_email: "bot@modrao.com"
