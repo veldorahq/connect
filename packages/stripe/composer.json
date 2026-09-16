@@ -1,6 +1,6 @@
 {
     "name": "veldora/connect-stripe",
-    "version": "0.7.1",
+    "version": "0.7.2",
     "description": "Stripe payment gateway integration for the Veldora PHP Framework",
     "type": "library",
     "license": "MIT",
